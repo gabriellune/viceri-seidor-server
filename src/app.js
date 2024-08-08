@@ -17,9 +17,30 @@ app.use('/api', taskRoutes);
 const swaggerOptions = {
   swaggerDefinition: {
     info: {
-      title: 'Todo API',
+      title: 'Viceri Seidor Server',
       version: '1.0.0',
+      description: 'REST API for a to-do app',
+      servers: [
+        {
+          url: "http://localhost:3000",
+          description: "Local Server"
+        }
+      ],
     },
+    components: {
+      securitySchemes: {
+        bearerAuth: {
+          type: 'http',
+          scheme: 'bearer',
+          bearerFormat: 'JWT'
+        }
+      }
+    },
+    security: [
+      {
+        bearerAuth: []
+      }
+    ],
   },
   apis: ['src/routes/*.js'],
 };
